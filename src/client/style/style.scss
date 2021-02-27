@@ -1,24 +1,41 @@
+$body-color: powderblue;
+$base-color: deeppink;
+$hover-color: #d7eef6;
+$board-color: lightpink;
 h1 {
   color: yellowgreen;
 }
+body {
+  background-color: $body-color;
+}
 .game-name {
-  color: aquamarine;
+  color: $base-color;
+  text-align: center;
 }
 .container{
   width: max-content;
 }
+.common-cell {
+  background-color: $board-color;
+}
+input {
+  width: 2rem;
+  //color: darkred;
+  font-weight: 700;
+  text-align: center;
+}
 .container div:nth-child(3n) {
-  border-bottom: solid 3px;
+  border-bottom: solid 3px $base-color;
 }
 .container div form:nth-child(3n) {
-  border-right: solid 3px;
+  border-right: solid 3px $base-color;
 }
 .container div form:first-child {
-  border-left: solid 3px;
+  border-left: solid 3px $base-color;
 }
 .container div:first-child {
-  border-top: solid 3px;
+  border-top: solid 3px $base-color;
 }
 .hover-cell {
-  background-color: yellowgreen;
+  background-color: $hover-color;
 }

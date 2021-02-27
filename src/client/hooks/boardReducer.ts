@@ -4,7 +4,7 @@ import produce from "immer";
 export const actions = {
   CHANGE: 'change',
   ACTIVE: 'active',
-  UNACTIVE: 'unactive'
+  INACTIVE: 'inactive'
 }
 
 export function reducer(state: ISudoku[][], action: any) {
@@ -25,7 +25,7 @@ export function reducer(state: ISudoku[][], action: any) {
         });
       });
     }
-    if (action.type === actions.UNACTIVE) {
+    if (action.type === actions.INACTIVE) {
       produce.forEach(row => {
         row.forEach(anyCell => {
           anyCell.hoverClass = false;

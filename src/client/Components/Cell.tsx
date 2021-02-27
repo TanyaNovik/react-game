@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {BoardContext} from "../context/boardContext";
 import {actions} from "../hooks/boardReducer";
 
@@ -18,20 +18,28 @@ interface cellManipulation {
 
 export const Cell = (props: cellManipulation) => {
   const { dispatch } = useContext(BoardContext);
-
-  // const [hoverClass, setHoverClass] = useState(false);
+  const [activeColor, setActiveColor] = useState(null);
+  function focusHandler() {
+    dispatch({type:actions.ACTIVE, payload: {cell: props.cellObj}});
+    setActiveColor('skyblue');
+  }
+  function blurHandler() {
+    setActiveColor(null);
+    dispatch({type:actions.INACTIVE, payload: {cell: props.cellObj}});
+  }
   return (
     <React.Fragment>
       <form>
-        <input className={props.cellObj.hoverClass ? 'hover-cell' : ''} type="text"
-               style={{width: "2rem"}}
+        <input className={props.cellObj.hoverClass ? 'hover-cell' : 'common-cell'} type="text"
+               style={{backgroundColor: activeColor, color: props.cellObj.readonly ? 'darkred' : 'indianred'}}
                maxLength={1}
+               readOnly={props.cellObj.readonly}
                value={props.cellObj.value ? props.cellObj.value : ''}
                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                  dispatch({type:actions.CHANGE, payload: {value:event.target.value, cell: props.cellObj}})
                }}
-               onFocus={() => dispatch({type:actions.ACTIVE, payload: {cell: props.cellObj}})}
-               onBlur={() => dispatch({type:actions.UNACTIVE})}/>
+               onFocus={() => focusHandler()}
+               onBlur={() => blurHandler()}/>
       </form>
     </React.Fragment>
   );
