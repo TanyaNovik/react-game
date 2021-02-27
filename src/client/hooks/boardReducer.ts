@@ -1,16 +1,36 @@
 import {ISudoku} from "../Components/Cell";
 import produce from "immer";
+
 export const actions = {
   CHANGE: 'change',
-  ACTIVE: 'active'
+  ACTIVE: 'active',
+  UNACTIVE: 'unactive'
 }
-export function reducer(state: ISudoku[][], action:any) {
+
+export function reducer(state: ISudoku[][], action: any) {
   return produce(state, (produce) => {
-    if(action.type === actions.CHANGE) {
+    if (action.type === actions.CHANGE) {
       produce[action.payload.cell.x][action.payload.cell.y].value = action.payload.value;
     }
-    if(action.type === actions.ACTIVE) {
-      produce[action.payload.cell.x][action.payload.cell.y].value = action.payload.value;
+    if (action.type === actions.ACTIVE) {
+      for (let i = 0; i < 9; i++) {
+        produce[action.payload.cell.x][i].hoverClass = true;
+        produce[i][action.payload.cell.y].hoverClass = true;
+      }
+      produce.forEach(row => {
+        row.forEach(anyCell => {
+          if (anyCell.sqNumber === action.payload.cell.sqNumber) {
+            anyCell.hoverClass = true;
+          }
+        });
+      });
+    }
+    if (action.type === actions.UNACTIVE) {
+      produce.forEach(row => {
+        row.forEach(anyCell => {
+          anyCell.hoverClass = false;
+        });
+      });
     }
   })
 }

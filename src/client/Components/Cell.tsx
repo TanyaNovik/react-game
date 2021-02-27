@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {BoardContext} from "../context/boardContext";
 import {actions} from "../hooks/boardReducer";
 
@@ -30,8 +30,8 @@ export const Cell = (props: cellManipulation) => {
                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                  dispatch({type:actions.CHANGE, payload: {value:event.target.value, cell: props.cellObj}})
                }}
-               onFocus={() => setHoverClass(true)}
-               onBlur={() => setHoverClass(false)}/>
+               onFocus={() => dispatch({type:actions.ACTIVE, payload: {cell: props.cellObj}})}
+               onBlur={() => dispatch({type:actions.UNACTIVE})}/>
       </form>
     </React.Fragment>
   );
