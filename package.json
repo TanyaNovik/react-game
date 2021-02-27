@@ -4,7 +4,8 @@
   "description": "sudoku",
   "main": "index.js",
   "scripts": {
-    "lint-and-fix": "eslint src/**/*.js src/**/*.tsx --fix"
+    "lint-and-fix": "eslint src/**/*.js src/**/*.tsx --fix",
+    "watch": "webpack serve --config webpack.client.js --mode development"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "sudoku": "0.0.3"
   },
   "devDependencies": {
     "@types/config": "0.0.38",
@@ -48,6 +50,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.4.1",
     "image-webpack-loader": "^7.0.1",
+    "immer": "^8.0.1",
     "mini-css-extract-plugin": "^0.11.3",
     "node-sass": "^5.0.0",
     "postcss-csso": "^4.0.0",

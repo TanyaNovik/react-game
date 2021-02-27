@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -13,13 +14,13 @@ module.exports = (env) => {
       ],
     },
     sass: {
-      test: /\.s[ac]ss$/,
+      test: /\.s[ac]ss$/i,
       use: [
+        // Creates style nodes from JS strings
         'style-loader',
-        {
-          loader: 'css-loader',
-          options: { modules: true },
-        },
+        // Translates CSS into CommonJS
+        'css-loader',
+        // Compiles Sass to CSS
         'sass-loader',
       ],
     },
@@ -35,6 +36,10 @@ module.exports = (env) => {
           loader: 'sass-loader',
         },
       ],
+    },
+    css: {
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'],
     },
     img: {
       test: /\.(gif|png|jpe?g)$/i,
@@ -90,8 +95,8 @@ module.exports = (env) => {
   };
 
   if (env === 'production') {
-    modules.sass.use.splice(2, 0, { loader: 'postcss-loader' });
-    modules.sassIsomorph.use.splice(2, 0, { loader: 'postcss-loader' });
+    // modules.sass.use.splice(2, 0, { loader: 'postcss-loader' });
+    // modules.sassIsomorph.use.splice(2, 0, { loader: 'postcss-loader' });
   }
 
   const resolve = {
