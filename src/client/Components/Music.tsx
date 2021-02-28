@@ -35,13 +35,12 @@ export const Music = () => {
     <div className="music-container">
       {console.log('music')}
       {
-        sound === 'on' ? <button onClick={increaseVolumeHandler} value="+" className="change-volume-btn">+</button> : null
+        sound === 'on' ? <button onClick={decreaseVolumeHandler} value="-" className="change-volume-btn">-</button> : null
       }
       <button onClick={musicHandler}>music {sound}</button>
       {
-        sound === 'on' ? <button onClick={decreaseVolumeHandler} value="-" className="change-volume-btn">-</button> : null
+        sound === 'on' ? <button onClick={increaseVolumeHandler} value="+" className="change-volume-btn">+</button> : null
       }
-
     </div>
   );
 }
