@@ -10,7 +10,9 @@ export const actions = {
 export function reducer(state: ISudoku[][], action: any) {
   return produce(state, (produce) => {
     if (action.type === actions.CHANGE) {
-      produce[action.payload.cell.x][action.payload.cell.y].value = action.payload.value;
+      if(action.payload.value.match(/[1-9]/) || action.payload.value === '') {
+        produce[action.payload.cell.x][action.payload.cell.y].value = action.payload.value;
+      }
     }
     if (action.type === actions.ACTIVE) {
       for (let i = 0; i < 9; i++) {

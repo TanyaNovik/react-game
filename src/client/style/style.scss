@@ -6,11 +6,14 @@ h1 {
   color: yellowgreen;
 }
 body {
+  font-size: 26px;
+  font-family: Georgia,Times New Roman,Serif;
   background-color: $body-color;
 }
 .game-name {
   color: $base-color;
   text-align: center;
+  font-weight: 700;
 }
 .container{
   width: max-content;
@@ -19,10 +22,13 @@ body {
   background-color: $board-color;
 }
 input {
-  width: 2rem;
-  //color: darkred;
+  width: 4rem;
+  height: 4rem;
   font-weight: 700;
   text-align: center;
+  &:focus {
+    outline: none;
+  }
 }
 .container div:nth-child(3n) {
   border-bottom: solid 3px $base-color;
@@ -38,4 +44,13 @@ input {
 }
 .hover-cell {
   background-color: $hover-color;
+}
+@media only screen and (max-width: 770px) {
+  body {
+    font-size: 20px;
+  }
+  input {
+    width: 3rem;
+    height: 3rem;
+  }
 }
