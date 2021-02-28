@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {BoardContext} from "../context/boardContext";
 import {actions} from "../hooks/boardReducer";
-
+const BUTTONSOUND = 'http://www.pachd.com/a/button/button24.wav';
 export interface ISudoku {
   value: number;
   x: number;
@@ -19,6 +19,7 @@ interface cellManipulation {
 export const Cell = (props: cellManipulation) => {
   const { dispatch } = useContext(BoardContext);
   const [activeColor, setActiveColor] = useState(null);
+  const [musicFocus] = useState(new Audio(BUTTONSOUND));
   function focusHandler() {
     dispatch({type:actions.ACTIVE, payload: {cell: props.cellObj}});
     setActiveColor('skyblue');
@@ -29,6 +30,8 @@ export const Cell = (props: cellManipulation) => {
   }
   return (
     <React.Fragment>
+      {console.log('cell')}
+
       <form>
         <input className={props.cellObj.hoverClass ? 'hover-cell' : 'common-cell'} type="text"
                style={{backgroundColor: activeColor, color: props.cellObj.readonly ? 'darkred' : 'indianred'}}
@@ -38,7 +41,10 @@ export const Cell = (props: cellManipulation) => {
                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                  dispatch({type:actions.CHANGE, payload: {value:event.target.value, cell: props.cellObj}})
                }}
-               onFocus={() => focusHandler()}
+               onFocus={() => {
+                 focusHandler()
+                 musicFocus.play();
+               }}
                onBlur={() => blurHandler()}/>
       </form>
     </React.Fragment>

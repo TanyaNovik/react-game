@@ -2,6 +2,7 @@ $body-color: powderblue;
 $base-color: deeppink;
 $hover-color: #d7eef6;
 $board-color: lightpink;
+$button-text: #8ccb0a;
 h1 {
   color: yellowgreen;
 }
@@ -26,8 +27,13 @@ input {
   height: 4rem;
   font-weight: 700;
   text-align: center;
+  cursor: pointer;
+  caret-color: transparent;
   &:focus {
     outline: none;
+  }
+  &:hover {
+    background-color: $hover-color;
   }
 }
 .container div:nth-child(3n) {
@@ -44,6 +50,26 @@ input {
 }
 .hover-cell {
   background-color: $hover-color;
+}
+button {
+  display: flex;
+  margin-left: 45%;
+  margin-top: 10px;
+  color: $button-text;
+  border-radius: 11px;
+  border-color: $base-color;
+}
+.music-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  button {
+    margin: 10px 20px;
+  }
+  .change-volume-btn {
+    width: 70px;
+    justify-content: center;
+  }
 }
 @media only screen and (max-width: 770px) {
   body {

@@ -1,10 +1,11 @@
 import {ISudoku} from "../Components/Cell";
 import produce from "immer";
-
+import {setSudokuBoard} from '../helpers/gameHelper';
 export const actions = {
   CHANGE: 'change',
   ACTIVE: 'active',
-  INACTIVE: 'inactive'
+  INACTIVE: 'inactive',
+  NEW: 'new'
 }
 
 export function reducer(state: ISudoku[][], action: any) {
@@ -33,6 +34,9 @@ export function reducer(state: ISudoku[][], action: any) {
           anyCell.hoverClass = false;
         });
       });
+    }
+    if (action.type === actions.NEW) {
+      return setSudokuBoard();
     }
   })
 }

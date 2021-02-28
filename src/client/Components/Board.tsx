@@ -12,6 +12,8 @@ export const Board:React.FC<sudokuMas> = (props:sudokuMas) => {
     return (
     // <BoardContext.Provider value={{dispatch}}>
       <React.Fragment>
+        {console.log('board')}
+
         <div className="container">
           {props.sudokuObject.map((element, i) => {
             return <div key={i} className="row">

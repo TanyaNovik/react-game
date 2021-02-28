@@ -1,30 +1,33 @@
-import React, {useReducer, useRef, useState} from "react";
+import React, {useReducer} from "react";
+// , useRef, useState
 import {Board} from "./Board";
-import {reducer} from "../hooks/boardReducer";
-import {initialState} from "../helpers/gameHelper";
+import {actions, reducer} from "../hooks/boardReducer";
+import {setSudokuBoard} from "../helpers/gameHelper";
 import {BoardContext} from "../context/boardContext";
-import {formatTime} from "../helpers/timerHelper";
+// import {Timer} from "./Timer";
+// import {formatTime} from "../helpers/timerHelper";
+import {Music} from "./Music";
 
 export const Game = () => {
-  const [sudokuObject, dispatch] = useReducer(reducer, initialState())
-  const [timer, setTimer] = useState(0);
-  const countRef = useRef(null);
-  countRef.current = setInterval(() => {
-    setTimer((timer) => timer + 1)
-  }, 1000);
-  // const [game, setGame] = useState(checkDone(sudokuObject));
-  function newGameHandler() {
+  const [sudokuObject, dispatch] = useReducer(reducer, setSudokuBoard());
 
+  function newGameHandler() {
+    dispatch({type:actions.NEW});
+    // setTimer(0);
   }
+
 
   return (
     <BoardContext.Provider value={{dispatch}}>
+      {console.log('game')}
+
       <React.Fragment>
         {/*{checkDone(sudokuObject) ?*/}
         {/*  <h1>You have done game</h1> :*/}
-        <p>{formatTime(timer)}</p>
+        {/*<Timer />*/}
         <Board sudokuObject={sudokuObject}/>
         <button onClick={newGameHandler}>new game</button>
+        <Music />
         {/*}*/}
       </React.Fragment>
     </BoardContext.Provider>

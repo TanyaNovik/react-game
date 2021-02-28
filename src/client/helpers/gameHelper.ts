@@ -4,7 +4,7 @@ import {makepuzzle, solvepuzzle} from "sudoku";
 const getSqNumber = (x:number, y:number): number => {
   return Math.trunc(x/3)*3 + Math.trunc(y/3);
 }
-export const initialState = (): Array<Array<ISudoku>> => {
+export const setSudokuBoard = (): Array<Array<ISudoku>> => {
   const puzzle = makepuzzle();
   const solvePuzzle = solvepuzzle(puzzle);
   let sudokuObject = [];

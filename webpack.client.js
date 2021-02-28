@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
     },
     resolve: config.resolve,
     module: {
-      rules: [config.modules.js, config.modules.sass, config.modules.img, config.modules.css],
+      rules: [config.modules.js, config.modules.sass, config.modules.img, config.modules.css, config.modules.audio],
     },
     plugins: [
       new ESLintPlugin(),
