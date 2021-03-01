@@ -1,4 +1,4 @@
-import React, {useState, useRef, createContext, useContext} from 'react';
+import React, {useState, useRef, createContext, useContext, Dispatch, SetStateAction} from 'react';
 
 interface IGame {
   timer: number;
@@ -14,11 +14,16 @@ interface IGame {
   incrementMoves(): void;
 
   resetMoves(): void;
+  setMoves: Dispatch<SetStateAction<number>>;
+  // changeMoves(n: number): void;
 
   sound: boolean;
   volume: number;
+
   changeSound(): void;
+
   increaseVolume(): void;
+
   decreaseVolume(): void;
 }
 
@@ -74,6 +79,9 @@ export const GameProvider: React.FC = ({children}: IProps) => {
   const resetMoves = () => {
     setMoves(0);
   };
+  // const changeMoves = (n: number) => {
+  //   setMoves(n);
+  // }
   const changeSound = () => {
     setSound(!sound);
   }
@@ -99,6 +107,8 @@ export const GameProvider: React.FC = ({children}: IProps) => {
         moves,
         resetMoves,
         incrementMoves,
+        setMoves,
+        // changeMoves,
         sound,
         changeSound,
         volume,

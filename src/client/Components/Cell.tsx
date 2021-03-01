@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {BoardContext} from "../context/boardContext";
 import {actions} from "../hooks/boardReducer";
 import {useGame} from "../hooks/gameProvider";
+// import {setLocalStorageGame} from "../helpers/localStorageHelper";
 
 const BUTTONSOUND = 'http://www.pachd.com/a/button/button24.wav';
 
@@ -17,9 +18,10 @@ export interface ISudoku {
 
 interface cellManipulation {
   cellObj: ISudoku,
+  // writeLS(): void
 }
 
-export const Cell = (props: cellManipulation) => {
+const CellMemo = (props: cellManipulation) => {
   const {dispatch} = useContext(BoardContext);
   const [activeColor, setActiveColor] = useState(null);
   const [musicFocus] = useState(new Audio(BUTTONSOUND));
@@ -50,9 +52,9 @@ export const Cell = (props: cellManipulation) => {
                maxLength={1}
                readOnly={props.cellObj.readonly}
                value={props.cellObj.value ? props.cellObj.value : ''}
-               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                 dispatch({type: actions.CHANGE, payload: {value: event.target.value, cell: props.cellObj}})
-                 incrementMoves()
+               onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
+                  dispatch({type: actions.CHANGE, payload: {value: event.target.value, cell: props.cellObj}})
+                  incrementMoves()
                }}
                onFocus={() => {
                  focusHandler()
@@ -63,3 +65,5 @@ export const Cell = (props: cellManipulation) => {
     </React.Fragment>
   );
 };
+
+export const Cell = React.memo(CellMemo);

@@ -6,8 +6,9 @@ import {Cell, ISudoku} from './Cell'
 
 interface sudokuMas {
   sudokuObject: ISudoku[][],
+  // writeLS(): void
 }
-export const Board:React.FC<sudokuMas> = (props:sudokuMas) => {
+const BoardMemo:React.FC<sudokuMas> = (props:sudokuMas) => {
 
     return (
     // <BoardContext.Provider value={{dispatch}}>
@@ -28,3 +29,4 @@ export const Board:React.FC<sudokuMas> = (props:sudokuMas) => {
     // </BoardContext.Provider>
   );
 };
+export const Board = React.memo(BoardMemo);
