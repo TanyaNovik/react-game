@@ -5,6 +5,7 @@ import {useGame} from "../hooks/gameProvider";
 // import {setLocalStorageGame} from "../helpers/localStorageHelper";
 
 const BUTTONSOUND = 'http://www.pachd.com/a/button/button24.wav';
+const selectedCellHoverColor = 'skyblue';
 
 export interface ISudoku {
   value: number;
@@ -12,7 +13,7 @@ export interface ISudoku {
   y: number;
   result: number;
   readonly: boolean;
-  hoverClass: boolean;
+  hoverClass: number;
   sqNumber: number;
 }
 
@@ -25,11 +26,12 @@ const CellMemo = (props: cellManipulation) => {
   const {dispatch} = useContext(BoardContext);
   const [activeColor, setActiveColor] = useState(null);
   const [musicFocus] = useState(new Audio(BUTTONSOUND));
-  const {incrementMoves, sound, volume} = useGame();
+  const {incrementMoves, sound, volume, setFocusedCell} = useGame();
 
   function focusHandler() {
     dispatch({type: actions.ACTIVE, payload: {cell: props.cellObj}});
-    setActiveColor('skyblue');
+    setActiveColor(selectedCellHoverColor);
+    setFocusedCell({x: props.cellObj.x, y: props.cellObj.y})
   }
 
   function blurHandler() {
@@ -47,14 +49,14 @@ const CellMemo = (props: cellManipulation) => {
       {console.log('cell')}
 
       <form>
-        <input className={props.cellObj.hoverClass ? 'hover-cell' : 'common-cell'} type="text"
+        <input className={!!props.cellObj.hoverClass ? 'hover-cell' : 'common-cell'} type="text"
                style={{backgroundColor: activeColor, color: props.cellObj.readonly ? 'darkred' : 'indianred'}}
                maxLength={1}
                readOnly={props.cellObj.readonly}
                value={props.cellObj.value ? props.cellObj.value : ''}
-               onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
-                  dispatch({type: actions.CHANGE, payload: {value: event.target.value, cell: props.cellObj}})
-                  incrementMoves()
+               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                 dispatch({type: actions.CHANGE, payload: {value: event.target.value, cell: props.cellObj}})
+                 incrementMoves()
                }}
                onFocus={() => {
                  focusHandler()

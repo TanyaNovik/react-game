@@ -11,7 +11,7 @@ import {setLocalStorageGame, getLocalStorageGame} from "../helpers/localStorageH
 export const Game = () => {
   const lastGame = getLocalStorageGame();
   const [sudokuObject, dispatch] = useReducer(reducer, lastGame ? JSON.parse(lastGame.sudoku) : setSudokuBoard());
-  const {moves,resetMoves, setMoves, sound, changeSound, increaseVolume, decreaseVolume} = useGame();
+  const {moves,resetMoves, setMoves, sound, changeSound, increaseVolume, decreaseVolume, focusedCell} = useGame();
   const [store, setStore] = useState(!!lastGame);
   // if(store){
   //   setMoves(lastGame.moves);
@@ -63,7 +63,10 @@ export const Game = () => {
           <button onClick={increaseVolume} value="+" className="change-volume-btn">+</button>
         </div>
         <Board sudokuObject={sudokuObject}/>
+        <div className="game-action">
         <button onClick={newGameHandler}>new game</button>
+        <button onClick={() => dispatch({type: actions.HELP, payload:focusedCell})}>help</button>
+        </div>
         <Music/>
         {/*}*/}
       </React.Fragment>

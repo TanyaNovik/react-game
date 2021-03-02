@@ -25,6 +25,9 @@ interface IGame {
   increaseVolume(): void;
 
   decreaseVolume(): void;
+  focusedCell:object;
+  setFocusedCell: Dispatch<SetStateAction<object>>;
+
 }
 
 interface IProps {
@@ -45,6 +48,7 @@ export const GameProvider: React.FC = ({children}: IProps) => {
   const countRef = useRef(null);
   const [sound, setSound] = useState(true);
   const [volume, setVolume] = useState(0.5);
+  const [focusedCell, setFocusedCell] = useState(null);
   const handleStart = () => {
     // setIsActive(true);
     // setIsPaused(true);
@@ -113,8 +117,9 @@ export const GameProvider: React.FC = ({children}: IProps) => {
         changeSound,
         volume,
         increaseVolume,
-        decreaseVolume
-
+        decreaseVolume,
+        focusedCell,
+        setFocusedCell
       }}
     >
       {children}

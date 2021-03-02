@@ -3,6 +3,7 @@ $base-color: deeppink;
 $hover-color: #d7eef6;
 $board-color: lightpink;
 $button-text: #8ccb0a;
+$selected-color: skyblue;
 h1 {
   color: yellowgreen;
 }
@@ -33,7 +34,7 @@ input {
     outline: none;
   }
   &:hover {
-    background-color: $hover-color;
+    background-color: $selected-color;
   }
 }
 .container div:nth-child(3n) {

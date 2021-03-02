@@ -7,7 +7,7 @@ export const getLocalStorageGame = () => {
   if (localStorage.getItem('currentGame')) {
     const currentGame = JSON.parse(localStorage.getItem('currentGame'));
     const sudokuRestore:ISudoku[][] = JSON.parse(currentGame.sudoku);
-    sudokuRestore.map(row => row.map(cell => cell.hoverClass = false));
+    sudokuRestore.map(row => row.map(cell => cell.hoverClass = 0));
     return {sudoku: JSON.stringify(sudokuRestore), moves:currentGame.moves};
   }
   return null;

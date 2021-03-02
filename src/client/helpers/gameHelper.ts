@@ -17,7 +17,7 @@ export const setSudokuBoard = (): Array<Array<ISudoku>> => {
         y: j,
         result: solvePuzzle[i * 9 + j] + 1,
         readonly: puzzle[i * 9 + j] ? true : false,
-        hoverClass: false,
+        hoverClass: 0,
         sqNumber: getSqNumber(i,j)
       });
     }
