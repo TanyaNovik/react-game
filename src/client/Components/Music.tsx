@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useHotkeys} from "react-hotkeys-hook";
 
 const MUSICURL = 'http://streaming.tdiradio.com:8000/house.mp3';
 
@@ -9,8 +10,8 @@ export const Music = () => {
 
   function musicHandler() {
     if (sound === 'on') {
-      music.pause();
       setSound('off');
+      music.pause();
     } else {
       music.volume = musicVolume;
       music.play();
@@ -27,13 +28,12 @@ export const Music = () => {
   function decreaseVolumeHandler() {
     const newV = musicVolume - 0.1 < 0 ? 0 : musicVolume - 0.1;
     setMusicVolume(newV);
-
     music.volume = musicVolume;
   }
+  useHotkeys('shift+m', musicHandler);
 
   return (
     <div className="music-container">
-      {console.log('music')}
       {
         sound === 'on' ? <button onClick={decreaseVolumeHandler} value="-" className="change-volume-btn">-</button> : null
       }

@@ -8,7 +8,6 @@ const BoardMemo:React.FC<sudokuMas> = (props:sudokuMas) => {
 
     return (
       <React.Fragment>
-        {console.log('board')}
 
         <div className="container">
           {props.sudokuObject.map((element, i) => {

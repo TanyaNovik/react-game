@@ -13,7 +13,6 @@ export const ScoreTable = () => {
   const getResults = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/scores');
-      console.log(response);
 
       setScores(
       response.data.sort((a: IScoreTable, b: IScoreTable) => {

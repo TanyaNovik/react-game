@@ -44,8 +44,6 @@ const CellMemo = (props: cellManipulation) => {
 
   return (
     <React.Fragment>
-      {console.log('cell')}
-
       <form>
         <input className={!!props.cellObj.hoverClass ? 'hover-cell' : 'common-cell'} type="text"
                style={{backgroundColor: activeColor, color: props.cellObj.readonly ? 'darkred' : 'indianred'}}

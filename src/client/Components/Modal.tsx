@@ -21,12 +21,11 @@ export const Modal = (props:sudokuMas) => {
               <input type="text" value={name}
                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}></input>
               <button onClick={async () => {
-                const a = await axios.post('http://localhost:3000/api/score', {
+                await axios.post('http://localhost:3000/api/score', {
                   name,
                   time: timer,
                   moves
                 })
-                console.log('!!!!', a)
                 localStorage.removeItem('currentGame')
                 props.newGame()
 

@@ -14,7 +14,11 @@ body {
   font-family: Georgia, Times New Roman, Serif;
   background-color: $body-color;
 }
-
+.help-menu {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
 .game-name {
   margin: 0;
   color: $base-color;

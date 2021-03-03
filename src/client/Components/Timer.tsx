@@ -7,7 +7,6 @@ export const Timer = () => {
 
   return (
       <React.Fragment>
-        {console.log('timer')}
 
         <span>{formatTime(timer)}</span>
       </React.Fragment>

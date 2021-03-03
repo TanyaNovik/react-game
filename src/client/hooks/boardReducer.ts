@@ -8,7 +8,7 @@ export const actions = {
   INACTIVE: 'inactive',
   NEW: 'new',
   HELP: 'help',
-  SHOWALL: 'showall'
+  SHOWALL: 'showall',
 }
 
 export function reducer(state: ISudoku[][], action: any) {

@@ -10,17 +10,19 @@ import {setLocalStorageGame, getLocalStorageGame} from "../helpers/localStorageH
 import {Modal} from "./Modal";
 import {ScoreTable} from "./ScoreTable";
 import {Footer} from "./Footer";
+import {useHotkeys} from "react-hotkeys-hook";
+
 
 export const Game = () => {
   const lastGame = getLocalStorageGame();
   const [sudokuObject, dispatch] = useReducer(reducer, lastGame ? JSON.parse(lastGame.sudoku) : setSudokuBoard());
-  const {timer, setTimer, handleStart, moves, resetMoves, setMoves, sound, changeSound, increaseVolume, decreaseVolume, focusedCell, incrementMoves,
-  showScores, setShowScores} = useGame();
+  const {
+    timer, setTimer, handleStart, moves, resetMoves, setMoves, sound, changeSound, increaseVolume, decreaseVolume, focusedCell, incrementMoves,
+    showScores, setShowScores
+  } = useGame();
   const [store, setStore] = useState(!!lastGame);
   const [showed, setShowed] = useState(false);
-
   useEffect(() => {
-    console.log('000000')
     handleStart();
 
     if (store) {
@@ -29,7 +31,6 @@ export const Game = () => {
       setTimer(lastGame.time)
     }
   }, [])
-  console.log('!!!', moves)
 
   useEffect(() => {
     setLocalStorageGame(sudokuObject, moves, timer);
@@ -39,20 +40,37 @@ export const Game = () => {
     dispatch({type: actions.NEW});
     resetMoves();
     setTimer(0);
-    }
+  }
+  function helpHandler() {
+    dispatch({type: actions.HELP, payload: focusedCell});
+    incrementMoves();
+    incrementMoves();
+  }
+  function showAllHandler() {
+    dispatch({type: actions.SHOWALL, payload: null});
+    setShowed(true);
+  }
+
+  useHotkeys('shift+q', () => {
+    setShowScores(true);
+  });
+  useHotkeys('shift+n', () => {
+    newGameHandler();
+  });
+  useHotkeys('shift+w', showAllHandler);
+  useHotkeys('shift+d', changeSound);
+
 
   return (
     <BoardContext.Provider value={{dispatch}}>
-      {console.log('game')}
-
       <React.Fragment>
         {(checkDone(sudokuObject) && !showed && checkAnyEntered(sudokuObject)) ?
           <Modal sudokuObject={sudokuObject} newGame={newGameHandler}/> :
           <div>
             {showScores ? <ScoreTable/> : null}
             <div className="score">
-            <Timer />
-            <span>score: {moves}</span>
+              <Timer/>
+              <span>score: {moves}</span>
             </div>
             <div className="music-container">
               <button onClick={decreaseVolume} value="-" className="change-volume-btn">-</button>
@@ -63,20 +81,11 @@ export const Game = () => {
             <div className="game-actions">
               <button onClick={() => setShowScores(true)}>show best scores</button>
               <button onClick={newGameHandler}>new game</button>
-              <button onClick={() => {
-                dispatch({type: actions.HELP, payload: focusedCell})
-                incrementMoves()
-                incrementMoves()
-              }}>help</button>
-              <button onClick={() => {
-                dispatch({type: actions.SHOWALL, payload: null})
-                setShowed(true)
-              }
-              }>show all
-              </button>
+              <button onClick={helpHandler}>help</button>
+              <button onClick={showAllHandler}>show all</button>
             </div>
             <Music/>
-            <Footer />
+            <Footer/>
           </div>
         }
       </React.Fragment>
