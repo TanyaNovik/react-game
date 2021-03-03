@@ -9,6 +9,7 @@ import {useGame} from "../hooks/gameProvider";
 import {setLocalStorageGame, getLocalStorageGame} from "../helpers/localStorageHelper";
 import {Modal} from "./Modal";
 import {ScoreTable} from "./ScoreTable";
+import {Footer} from "./Footer";
 
 export const Game = () => {
   const lastGame = getLocalStorageGame();
@@ -74,6 +75,7 @@ export const Game = () => {
               </button>
             </div>
             <Music/>
+            <Footer />
           </div>
 
         }

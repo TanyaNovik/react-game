@@ -4,8 +4,9 @@ $hover-color: #d7eef6;
 $board-color: lightpink;
 $button-text: #8ccb0a;
 $selected-color: skyblue;
-h1 {
-  color: yellowgreen;
+
+p{
+  margin: 0;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
 }
 
 .game-name {
+  margin: 0;
   color: $base-color;
   text-align: center;
   font-weight: 700;
@@ -29,8 +31,8 @@ body {
 }
 
 input {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
@@ -85,7 +87,7 @@ button {
   justify-content: center;
 
   button {
-    margin: 10px 15px;
+    margin: 5px 15px;
   }
 }
 
@@ -95,7 +97,7 @@ button {
   justify-content: center;
 
   button {
-    margin: 10px 20px;
+    margin: 6px 20px;
   }
 
   .change-volume-btn {
@@ -106,7 +108,7 @@ button {
 
 .score {
   color: $base-color;
-  font-size: 30px;
+  font-size: 26px;
   text-align: center;
 }
 
@@ -178,13 +180,42 @@ button {
     }
   }
 }
+footer {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  color: $base-color;
+  align-items: center;
+}
 
+.git-list {
+  display: flex;
+  margin: 0;
+  list-style: none;
+  li {
+    margin: 0 11%;
+    a {
+      text-decoration: none;
+      color: $base-color;
+    }
+  }
+}
+.rs-logo {
+  width: 50px;
+  height: 20px;
+  background-image: url("https://app.rs.school/static/images/logo-rs-school.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
 @media only screen and (max-width: 770px) {
   body {
     font-size: 20px;
   }
-  input {
-    width: 3rem;
-    height: 3rem;
+  .game-actions{
+    font-size: 18px;
   }
 }
