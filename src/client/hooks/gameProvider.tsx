@@ -27,6 +27,8 @@ interface IGame {
   decreaseVolume(): void;
   focusedCell:object;
   setFocusedCell: Dispatch<SetStateAction<object>>;
+  showScores: boolean
+  setShowScores: Dispatch<SetStateAction<boolean>>;
 
 }
 
@@ -49,6 +51,8 @@ export const GameProvider: React.FC = ({children}: IProps) => {
   const [sound, setSound] = useState(true);
   const [volume, setVolume] = useState(0.5);
   const [focusedCell, setFocusedCell] = useState(null);
+  const [showScores, setShowScores] = useState(false);
+
   const handleStart = () => {
     // setIsActive(true);
     // setIsPaused(true);
@@ -119,7 +123,9 @@ export const GameProvider: React.FC = ({children}: IProps) => {
         increaseVolume,
         decreaseVolume,
         focusedCell,
-        setFocusedCell
+        setFocusedCell,
+        showScores,
+        setShowScores
       }}
     >
       {children}

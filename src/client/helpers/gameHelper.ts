@@ -29,3 +29,10 @@ export const setSudokuBoard = (): Array<Array<ISudoku>> => {
 export const checkDone = (obj:ISudoku[][]): boolean => {
   return obj.every(row => row.every(cell => !!cell.value));
 }
+export const checkWin = (obj:ISudoku[][]): boolean => {
+  return obj.every(row => row.every(cell => cell.value == cell.result));
+}
+
+export const checkAnyEntered = (obj:ISudoku[][]): boolean => {
+  return obj.some(row => row.some(cell => !cell.readonly));
+}

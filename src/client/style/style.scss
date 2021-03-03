@@ -7,22 +7,27 @@ $selected-color: skyblue;
 h1 {
   color: yellowgreen;
 }
+
 body {
   font-size: 26px;
-  font-family: Georgia,Times New Roman,Serif;
+  font-family: Georgia, Times New Roman, Serif;
   background-color: $body-color;
 }
+
 .game-name {
   color: $base-color;
   text-align: center;
   font-weight: 700;
 }
-.container{
+
+.container {
   width: max-content;
 }
+
 .common-cell {
   background-color: $board-color;
 }
+
 input {
   width: 4rem;
   height: 4rem;
@@ -30,28 +35,36 @@ input {
   text-align: center;
   cursor: pointer;
   caret-color: transparent;
+
   &:focus {
     outline: none;
   }
+
   &:hover {
     background-color: $selected-color;
   }
 }
+
 .container div:nth-child(3n) {
   border-bottom: solid 3px $base-color;
 }
+
 .container div form:nth-child(3n) {
   border-right: solid 3px $base-color;
 }
+
 .container div form:first-child {
   border-left: solid 3px $base-color;
 }
+
 .container div:first-child {
   border-top: solid 3px $base-color;
 }
+
 .hover-cell {
   background-color: $hover-color;
 }
+
 button {
   display: flex;
   //margin-left: 45%;
@@ -60,35 +73,112 @@ button {
   color: $button-text;
   border-radius: 11px;
   border-color: $base-color;
-  &:hover{
+
+  &:hover {
     transform: scale(1.05);
     border-color: $button-text;
   }
 }
+
 .game-actions {
   display: flex;
   justify-content: center;
-  button{
+
+  button {
     margin: 10px 15px;
   }
 }
-.music-container{
+
+.music-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
   button {
     margin: 10px 20px;
   }
+
   .change-volume-btn {
     width: 70px;
     justify-content: center;
   }
 }
+
 .score {
   color: $base-color;
   font-size: 30px;
   text-align: center;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .modal-content {
+    width: 400px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 5px;
+    background: white;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 90%;
+      justify-content: center;
+    }
+
+    p {
+      color: $base-color;
+    }
+
+    h2 {
+      color: $button-text;
+    }
+
+    h3 {
+      color: $base-color;
+    }
+  }
+}
+
+.score-table {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  .score-table-content {
+    width: 98%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 5px;
+    background: white;
+    table{
+      color: $base-color;
+    }
+  }
+}
+
 @media only screen and (max-width: 770px) {
   body {
     font-size: 20px;
