@@ -5,7 +5,7 @@ $board-color: lightpink;
 $button-text: #8ccb0a;
 $selected-color: skyblue;
 
-p{
+p {
   margin: 0;
 }
 
@@ -107,9 +107,14 @@ button {
 }
 
 .score {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
   color: $base-color;
-  font-size: 26px;
+  font-size: 24px;
   text-align: center;
+
+  span {
+    margin-right: 20px;
+  }
 }
 
 .modal {
@@ -145,6 +150,12 @@ button {
       color: $base-color;
     }
 
+    span {
+
+      color: $base-color;
+
+    }
+
     h2 {
       color: $button-text;
     }
@@ -166,6 +177,7 @@ button {
   justify-content: center;
   padding-top: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
+
   .score-table-content {
     width: 98%;
     height: fit-content;
@@ -175,11 +187,13 @@ button {
     padding: 2rem;
     border-radius: 5px;
     background: white;
-    table{
+
+    table {
       color: $base-color;
     }
   }
 }
+
 footer {
   position: absolute;
   bottom: 5px;
@@ -196,14 +210,17 @@ footer {
   display: flex;
   margin: 0;
   list-style: none;
+
   li {
     margin: 0 11%;
+
     a {
       text-decoration: none;
       color: $base-color;
     }
   }
 }
+
 .rs-logo {
   width: 50px;
   height: 20px;
@@ -211,11 +228,12 @@ footer {
   background-repeat: no-repeat;
   background-position: center;
 }
+
 @media only screen and (max-width: 770px) {
   body {
     font-size: 20px;
   }
-  .game-actions{
+  .game-actions {
     font-size: 18px;
   }
 }

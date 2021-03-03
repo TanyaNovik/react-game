@@ -2,34 +2,21 @@ import React, {useState, useRef, createContext, useContext, Dispatch, SetStateAc
 
 interface IGame {
   timer: number;
-  // isActive: boolean;
-  // isPaused: boolean;
+  setTimer: Dispatch<SetStateAction<number>>;
   handleStart(): void;
-
-  // handlePause(): void;
-  // handleResume(): void;
-  // handleReset(): void;
   moves: number;
-
   incrementMoves(): void;
-
   resetMoves(): void;
   setMoves: Dispatch<SetStateAction<number>>;
-  // changeMoves(n: number): void;
-
   sound: boolean;
   volume: number;
-
   changeSound(): void;
-
   increaseVolume(): void;
-
   decreaseVolume(): void;
   focusedCell:object;
   setFocusedCell: Dispatch<SetStateAction<object>>;
   showScores: boolean
   setShowScores: Dispatch<SetStateAction<boolean>>;
-
 }
 
 interface IProps {
@@ -44,8 +31,6 @@ export const useGame = () => {
 
 export const GameProvider: React.FC = ({children}: IProps) => {
   const [timer, setTimer] = useState(0);
-  // const [isActive, setIsActive] = useState(false);
-  // const [isPaused, setIsPaused] = useState(false);
   const [moves, setMoves] = useState(0);
   const countRef = useRef(null);
   const [sound, setSound] = useState(true);
@@ -54,31 +39,10 @@ export const GameProvider: React.FC = ({children}: IProps) => {
   const [showScores, setShowScores] = useState(false);
 
   const handleStart = () => {
-    // setIsActive(true);
-    // setIsPaused(true);
     countRef.current = setInterval(() => {
       setTimer((timer) => timer + 1);
     }, 1000);
   };
-
-  // const handlePause = () => {
-  //   clearInterval(countRef.current);
-  //   setIsPaused(false);
-  // };
-  //
-  // const handleResume = () => {
-  //   setIsPaused(true);
-  //   countRef.current = setInterval(() => {
-  //     setTimer((timer) => timer + 1);
-  //   }, 1000);
-  // };
-  //
-  // const handleReset = () => {
-  //   clearInterval(countRef.current);
-  //   setIsActive(false);
-  //   setIsPaused(false);
-  //   setTimer(0);
-  // };
 
   const incrementMoves = () => {
     setMoves((mv) => mv + 1);
@@ -87,9 +51,7 @@ export const GameProvider: React.FC = ({children}: IProps) => {
   const resetMoves = () => {
     setMoves(0);
   };
-  // const changeMoves = (n: number) => {
-  //   setMoves(n);
-  // }
+
   const changeSound = () => {
     setSound(!sound);
   }
@@ -106,17 +68,12 @@ export const GameProvider: React.FC = ({children}: IProps) => {
     <GameContext.Provider
       value={{
         timer,
-        // isActive,
-        // isPaused,
+        setTimer,
         handleStart,
-        // handlePause,
-        // handleResume,
-        // handleReset,
         moves,
         resetMoves,
         incrementMoves,
         setMoves,
-        // changeMoves,
         sound,
         changeSound,
         volume,

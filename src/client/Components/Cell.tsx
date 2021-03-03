@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {BoardContext} from "../context/boardContext";
 import {actions} from "../hooks/boardReducer";
 import {useGame} from "../hooks/gameProvider";
-// import {setLocalStorageGame} from "../helpers/localStorageHelper";
 
 const BUTTONSOUND = 'http://www.pachd.com/a/button/button24.wav';
 const selectedCellHoverColor = 'skyblue';
@@ -19,7 +18,6 @@ export interface ISudoku {
 
 interface cellManipulation {
   cellObj: ISudoku,
-  // writeLS(): void
 }
 
 const CellMemo = (props: cellManipulation) => {

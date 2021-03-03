@@ -1,17 +1,12 @@
 import React from 'react';
 import {Cell, ISudoku} from './Cell'
-// import {BoardContext} from '../context/boardContext'
-// import {reducer} from "../hooks/boardReducer";
-// import {initialState} from "../helpers/gameHelper";
 
 interface sudokuMas {
   sudokuObject: ISudoku[][],
-  // writeLS(): void
 }
 const BoardMemo:React.FC<sudokuMas> = (props:sudokuMas) => {
 
     return (
-    // <BoardContext.Provider value={{dispatch}}>
       <React.Fragment>
         {console.log('board')}
 
@@ -26,7 +21,6 @@ const BoardMemo:React.FC<sudokuMas> = (props:sudokuMas) => {
           }
         </div>
       </React.Fragment>
-    // </BoardContext.Provider>
   );
 };
 export const Board = React.memo(BoardMemo);

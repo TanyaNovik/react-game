@@ -3,19 +3,17 @@ import axios from "axios";
 import {useGame} from "../hooks/gameProvider";
 import {ISudoku} from "./Cell";
 import {checkWin} from "../helpers/gameHelper";
-// import {actions} from "../hooks/boardReducer";
 interface sudokuMas {
   sudokuObject: ISudoku[][],
   newGame(): void
 }
 export const Modal = (props:sudokuMas) => {
   const [name, setName] = useState('');
-  const {moves} = useGame();
+  const {timer, moves} = useGame();
 
   return (
     <React.Fragment>
       <div className="modal">
-        {/*<div className="modal-content">*/}
           {checkWin(props.sudokuObject) ?
             <div className="modal-content">
               <h1>You win</h1>
@@ -25,7 +23,7 @@ export const Modal = (props:sudokuMas) => {
               <button onClick={async () => {
                 const a = await axios.post('http://localhost:3000/api/score', {
                   name,
-                  time: 30,
+                  time: timer,
                   moves
                 })
                 console.log('!!!!', a)
@@ -48,7 +46,6 @@ export const Modal = (props:sudokuMas) => {
           }
 
         </div>
-      {/*</div>*/}
     </React.Fragment>
   )
 

@@ -3,6 +3,7 @@ import {Table} from "react-bootstrap";
 import {useGame} from "../hooks/gameProvider";
 import axios from "axios";
 import {IScoreTable} from "../../server/scoreTable";
+import {formatTime} from "../helpers/timerHelper";
 
 
 export const ScoreTable = () => {
@@ -45,7 +46,7 @@ export const ScoreTable = () => {
                 <td>{index}</td>
                 <td>{sc.name}</td>
                 <td>{sc.moves}</td>
-                <td>{sc.time}</td>
+                <td>{formatTime(sc.time)}</td>
               </tr>)
             })
             }
