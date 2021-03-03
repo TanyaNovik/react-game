@@ -7,7 +7,8 @@ export const actions = {
   ACTIVE: 'active',
   INACTIVE: 'inactive',
   NEW: 'new',
-  HELP: 'help'
+  HELP: 'help',
+  SHOWALL: 'showall'
 }
 
 export function reducer(state: ISudoku[][], action: any) {
@@ -42,8 +43,19 @@ export function reducer(state: ISudoku[][], action: any) {
       return setSudokuBoard();
     }
     if (action.type === actions.HELP) {
-      produce[action.payload.x][action.payload.y].value = produce[action.payload.x][action.payload.y].result;
-      produce[action.payload.x][action.payload.y].readonly = true;
+      if(action.payload) {
+        produce[action.payload.x][action.payload.y].value = produce[action.payload.x][action.payload.y].result;
+        produce[action.payload.x][action.payload.y].readonly = true;
+      }
+    }
+    if (action.type === actions.SHOWALL) {
+      produce.map(row => {
+        row.map(cell => {
+          if(!cell.readonly) {
+            cell.value = cell.result;
+          }
+        })
+      });
     }
   })
 }

@@ -54,12 +54,23 @@ input {
 }
 button {
   display: flex;
-  margin-left: 45%;
+  //margin-left: 45%;
   margin-top: 10px;
   margin-bottom: 10px;
   color: $button-text;
   border-radius: 11px;
   border-color: $base-color;
+  &:hover{
+    transform: scale(1.05);
+    border-color: $button-text;
+  }
+}
+.game-actions {
+  display: flex;
+  justify-content: center;
+  button{
+    margin: 10px 15px;
+  }
 }
 .music-container{
   display: flex;
